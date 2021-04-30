@@ -1,0 +1,222 @@
+$themePink : #d41872;
+
+// register
+.register-background {
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.login-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 25px;
+}
+
+.btn-theme {
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    color: #fff !important;
+    border: 0;
+    font-size: 18px;
+    padding: 10px 20px;
+    min-width: 160px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 40px;
+    z-index: 1;
+    overflow: hidden;
+    transition: all .4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #555;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: all .4s;
+    }
+
+    &:hover {
+        background: transparent;
+        color: #fff;
+
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    .spinner-border {
+        display: none;
+    }
+
+    &.loding {
+        .spinner-border {
+            display: inline-block;
+        }
+
+        span {
+            display: none;
+        }
+    }
+}
+
+.form-control {
+    border: none;
+    height: 50px;
+    border: 1px solid $themePink;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: 0.3s;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: $themePink;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: transparent;
+    border-color: $themePink;
+    outline: 0;
+    box-shadow: none;
+}
+
+.signIn {
+    color: black;
+    font-weight: 500;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.error {
+    color: red;
+    padding: 0 0 0 10px;
+}
+
+.action-container {
+    display: flex;
+
+    div {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px 0 0 0;
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+            font-size: 20px;
+
+            &.liked {
+                color: $themePink;
+            }
+        }
+    }
+}
+
+.post-container {
+    max-width: 600px;
+}
+
+.post {
+    box-shadow: -1px 6px 25px -2px rgba(0, 0, 0, 0.55);
+    padding: 15px 0;
+}
+
+.card {
+    border: none;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    border-radius: 4px
+}
+
+.comment-input {
+    display: flex;
+    padding: 10px;
+
+    button {
+        margin: 0 0 0 15px;
+        border: 0;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+
+        .spinner-border {
+            display: none;
+        }
+
+        &.loding {
+            .spinner-border {
+                display: inline-block;
+            }
+
+            i,
+            svg {
+                display: none;
+            }
+        }
+    }
+}
+
+.notyf__toast {
+    border-radius: 15px;
+    max-width: 500px;
+}
+
+.notyf__message {
+    font-size: 12px;
+}
+
+#comment-container {
+    max-height: 500px;
+    overflow: auto;
+}
+
+#post-form {
+    label {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 15px 0;
+    }
+
+    margin-top: 100px;
+
+    textarea {
+        height: 100px !important;
+    }
+}
+
+.dropify-message {
+    p {
+        font-size: 12px !important;
+    }
+}
+
+.dropify-wrapper {
+    border:1px solid $themePink !important;
+    border-radius: 40px;
+}

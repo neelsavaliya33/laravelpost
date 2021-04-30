@@ -1,0 +1,249 @@
+.register-background {
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.btn-theme {
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  color: #fff !important;
+  border: 0;
+  font-size: 18px;
+  padding: 10px 20px;
+  min-width: 160px;
+  font-weight: bold;
+  position: relative;
+  border-radius: 40px;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+}
+
+.btn-theme::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #555;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+
+.btn-theme:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.btn-theme:hover::before {
+  opacity: 1;
+}
+
+.btn-theme .spinner-border {
+  display: none;
+}
+
+.btn-theme.loding .spinner-border {
+  display: inline-block;
+}
+
+.btn-theme.loding span {
+  display: none;
+}
+
+.form-control {
+  border: none;
+  height: 50px;
+  border: 1px solid #d41872;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: #d41872;
+}
+
+.form-control:focus {
+  color: #212529;
+  background-color: transparent;
+  border-color: #d41872;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.signIn {
+  color: black;
+  font-weight: 500;
+}
+
+.signIn a {
+  text-decoration: none;
+}
+
+.error {
+  color: red;
+  padding: 0 0 0 10px;
+}
+
+.action-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.action-container div {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 15px 0 0 0;
+}
+
+.action-container div a {
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+  font-size: 20px;
+}
+
+.action-container div a.liked {
+  color: #d41872;
+}
+
+.post-container {
+  max-width: 600px;
+}
+
+.post {
+  -webkit-box-shadow: -1px 6px 25px -2px rgba(0, 0, 0, 0.55);
+          box-shadow: -1px 6px 25px -2px rgba(0, 0, 0, 0.55);
+  padding: 15px 0;
+}
+
+.card {
+  border: none;
+  -webkit-box-shadow: 5px 6px 6px 2px #e9ecef;
+          box-shadow: 5px 6px 6px 2px #e9ecef;
+  border-radius: 4px;
+}
+
+.comment-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+}
+
+.comment-input button {
+  margin: 0 0 0 15px;
+  border: 0;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+.comment-input button .spinner-border {
+  display: none;
+}
+
+.comment-input button.loding .spinner-border {
+  display: inline-block;
+}
+
+.comment-input button.loding i,
+.comment-input button.loding svg {
+  display: none;
+}
+
+.notyf__toast {
+  border-radius: 15px;
+  max-width: 500px;
+}
+
+.notyf__message {
+  font-size: 12px;
+}
+
+#comment-container {
+  max-height: 500px;
+  overflow: auto;
+}
+
+#post-form {
+  margin-top: 100px;
+}
+
+#post-form label {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 15px 0;
+}
+
+#post-form textarea {
+  height: 100px !important;
+}
+
+.dropify-message p {
+  font-size: 12px !important;
+}
+
+.dropify-wrapper {
+  border: 1px solid #d41872 !important;
+  border-radius: 40px;
+}
+/*# sourceMappingURL=style.css.map */
