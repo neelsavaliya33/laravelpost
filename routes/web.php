@@ -33,5 +33,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/like/{post}', [PostController::class,'like'])->name('front.post.like');
     Route::post('/comment', [PostController::class,'comment'])->name('front.post.comment');
     Route::get('/comment/{post}', [PostController::class,'allcomment'])->name('front.post.commentall');
+    Route::delete('/delete/{post}', [PostController::class,'delete'])->name('front.post.delete');
     Route::get('/logout', [UserController::class,'logout'])->name('user.logout');
 });

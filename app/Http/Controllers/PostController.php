@@ -70,4 +70,12 @@ class PostController extends Controller
         $comment = Comment::with('user')->wherePost_id($post->id)->latest()->get();
         return response(['status' => true, 'comment' => $comment, 'count' => $comment->count()]);
     }
+
+    public function delete(Post $post)
+    {
+       if($post->delete())
+           return response(['status' => true]);
+
+        return response(['status' => false]);
+    }
 }

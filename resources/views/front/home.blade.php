@@ -11,9 +11,15 @@
             @foreach ($posts as $post)
 
                 <div class="col-12 mt-5 post">
-                    <div class="px-3">
-                        <h4>{{ $post->user->name }}</h4>
-                        <p>{{ $post->description }}</p>
+                    <div class="px-3 d-flex justify-content-between">
+                        <div>
+                            <h4>{{ $post->user->name }}</h4>
+                            <p>{{ $post->description }}</p>
+                        </div>
+                        @if (auth()->user()->id == $post->user_id)
+                            <a href="javascript:void(0)" data-id="{{ $post->id }}"
+                                class="text-danger delete"><i class="fas fa-trash-alt"></i></a>
+                        @endif
                     </div>
                     <div><img src="{{ asset('storage/' . $post->image_path) }}" alt="post image" class="img-fluid"></div>
                     <div class="action-container">
@@ -73,6 +79,11 @@
 
 @section('js')
     <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+        });
         $(document).on('click', '.like', function() {
             var id = $(this).data('id');
             var $this = $(this);
@@ -93,27 +104,57 @@
             });
         });
 
+        $(document).on('click', '.delete', function() {
+            var isconfirm = confirm("Are you sure you want to delete?");
+
+            if(!isconfirm)
+                return false;
+
+            var id = $(this).data('id');
+             var $this = $(this)
+            $.ajax({
+                type: "delete",
+                url: url+'/delete/'+id,
+                dataType: "json",
+                success: function(response) {
+                    if(response.status){
+                        $this.parent().parent().remove()
+                    }else{
+                        var notyf = new Notyf();
+                        notyf.error({
+                            message: 'something went wrong please try again later',
+                            duration: 5000,
+                            position: {
+                                x: 'center',
+                                y: 'top',
+                            },
+                        });
+                    }
+                }
+            });
+        })
+
         var myModal = new bootstrap.Modal(document.getElementById('comment-model'), {
             keyboard: false
         })
         var post_id = 0;
         $(document).on('click', '.comment', function() {
             post_id = $(this).data('id');
-            $.get(url+'/comment/'+post_id,
-                function (data) {
+            $.get(url + '/comment/' + post_id,
+                function(data) {
                     var html = '';
-                    data.comment.forEach(element => { 
+                    data.comment.forEach(element => {
                         html += `<div class="card p-3 mt-2">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="user d-flex flex-row align-items-center">
-                                                            <span>
-                                                                <small class="font-weight-bold text-primary">@${element.user.name}</small>
-                                                                <small class="font-weight-bold">${element.comment}</small>
-                                                            </span>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="user d-flex flex-row align-items-center">
+                                                                <span>
+                                                                    <small class="font-weight-bold text-primary">@${element.user.name}</small>
+                                                                    <small class="font-weight-bold">${element.comment}</small>
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>`;
-                                            });
+                                                    </div>`;
+                    });
                     $('#comment-container').empty().append(html);
                     $('#comment-count').empty().append(data.count)
                 },
@@ -132,11 +173,6 @@
                     },
                 },
                 submitHandler: function(form) {
-                    $.ajaxSetup({
-                        headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                        },
-                    });
                     $('#comment-submit').attr('disabled', true).addClass('loding');
                     $.ajax({
                         type: "post",
@@ -147,22 +183,22 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            if(response.status){
+                            if (response.status) {
 
                                 var html = `<div class="card p-3 mt-2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="user d-flex flex-row align-items-center">
-                                                        <span>
-                                                            <small class="font-weight-bold text-primary">@${response.userName}</small>
-                                                            <small class="font-weight-bold">${response.comment.comment}</small>
-                                                        </span>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="user d-flex flex-row align-items-center">
+                                                            <span>
+                                                                <small class="font-weight-bold text-primary">@${response.userName}</small>
+                                                                <small class="font-weight-bold">${response.comment.comment}</small>
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>`;
+                                                </div>`;
                                 $('#comment-container').prepend(html);
                                 $('#comment-count').empty().append(response.count)
                                 $("#comment-container").offset().top
-                            }else{
+                            } else {
                                 var notyf = new Notyf();
                                 notyf.error({
                                     message: 'something went wrong please try again later',
@@ -174,8 +210,9 @@
                                 });
                             }
                             $('#comment-form')[0].reset();
-                         
-                            $('#comment-submit').attr('disabled', false).removeClass('loding');
+
+                            $('#comment-submit').attr('disabled', false).removeClass(
+                                'loding');
                         },
 
                     });
