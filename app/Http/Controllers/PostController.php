@@ -73,6 +73,9 @@ class PostController extends Controller
 
     public function delete(Post $post)
     {
+        if(auth()->user()->id != $post->user_id)
+            return response(['status' => false]);
+
        if($post->delete())
            return response(['status' => true]);
 
